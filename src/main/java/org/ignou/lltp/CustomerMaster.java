@@ -1,7 +1,8 @@
 package org.ignou.lltp;
 
 
-import org.ignou.lltp.entities.Customer;
+import org.ignou.lltp.entities.Project;
+import org.ignou.lltp.repository.ProjectRepository;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 public class CustomerMaster {
@@ -10,18 +11,15 @@ public class CustomerMaster {
 
 	AbstractApplicationContext context = new AnnotationConfigApplicationContext(
 				BeanConfiguration.class);
-		CustomerRepository repository = context
-				.getBean(CustomerRepository.class);
+	ProjectRepository repository = context
+				.getBean(ProjectRepository.class);
 	
-
-	
-		repository.save(new Customer("Rajesh", "Bangalore"));
-		repository.save(new Customer("Krishna", "Kannur"));
-		System.out.println("CUSTOMER DETAILS");
-		Iterable<Customer> customers = repository.findAll();
-		for (Object customer : customers) {
-			System.out.println(customer);
-		}
+		
+		Project proj = new Project();
+		proj.setName("ABC");
+		proj.setActive(true);
+		repository.save(proj);
+		
 		((AbstractApplicationContext) context).close();
 	}
 		/*ChapterRepository repository = context
