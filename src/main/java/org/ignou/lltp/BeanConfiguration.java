@@ -4,6 +4,8 @@ package org.ignou.lltp;
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp.BasicDataSource;
+import org.ignou.lltp.dao.UserDao;
+import org.ignou.lltp.dao.UserDaoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -53,4 +55,9 @@ public class BeanConfiguration {
 	public PlatformTransactionManager transactionManager() {
 		return new JpaTransactionManager();
 	}
+	
+	 @Bean
+	 public UserDao getContactDAO() {
+	        return new UserDaoImpl(dataSource());
+	    }
 }

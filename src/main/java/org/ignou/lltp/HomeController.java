@@ -2,6 +2,7 @@ package org.ignou.lltp;
 
 import org.ignou.lltp.entities.Project;
 import org.ignou.lltp.repository.ProjectRepository;
+import org.ignou.lltp.service.ProjectService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,8 @@ public class HomeController {
 	@Autowired
 	private ProjectRepository repository;
 	
+	@Autowired
+	private ProjectService projectService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -31,6 +34,13 @@ public class HomeController {
 	@RequestMapping(value = "/s", method = RequestMethod.GET)
 	public @ResponseBody Iterable<Project> home() {
 		return repository.findAll();
+	}
+	
+	@RequestMapping(value="/hello", method = RequestMethod.GET)
+	public @ResponseBody String helloWorld(){
+		
+		return projectService.helloUser("Manu");
+		
 	}
 	
 }
