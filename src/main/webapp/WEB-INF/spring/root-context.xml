@@ -5,4 +5,12 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		<bean id="unauthorisedEntryPoint" class="org.ignou.lltp.security.UnauthorisedEntryPoint"></bean>
+		<bean id="securityDataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/lltp" />
+		<property name="username" value="root" />
+		<property name="password" value="root" />
+	</bean>
 </beans>
