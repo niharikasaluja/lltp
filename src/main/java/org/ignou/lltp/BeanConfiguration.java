@@ -57,7 +57,7 @@ public class BeanConfiguration {
 	}
 	
 	 @Bean
-	 public UserDao getContactDAO() {
-	        return new UserDaoImpl(dataSource());
-	    }
+	 public UserDao getUserDAO() {
+	      return new UserDaoImpl(dataSource());
+	 }
 }
