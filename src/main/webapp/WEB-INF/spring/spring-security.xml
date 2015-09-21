@@ -1,25 +1,25 @@
 <beans:beans xmlns="http://www.springframework.org/schema/security"
-  xmlns:beans="http://www.springframework.org/schema/beans"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.springframework.org/schema/beans
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
           http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
           http://www.springframework.org/schema/security
           http://www.springframework.org/schema/security/spring-security-3.2.xsd">
-           
-    <http auto-config='true' entry-point-ref="unauthorisedEntryPoint">
-      <intercept-url pattern="/users/*" access="ROLE_USER" />
-    </http>
-       
-<!-- Select users and user_roles from database -->
-	<authentication-manager>
-	  <authentication-provider>
-		<jdbc-user-service data-source-ref="securityDataSource"
-		  users-by-username-query=
-		    "select userName,password, enabled from user where userName=?"
-		  authorities-by-username-query=
-		    "select userName, role from user where userName =?  " />
-	  </authentication-provider>
+
+	<http auto-config='true' entry-point-ref="unauthorisedEntryPoint">
+		<form-login />
+		<logout />
+		<remember-me />
+		<intercept-url pattern="/users/*" access="ROLE_USER" />
+	</http>
+
+	<!-- Select users and user_roles from database -->
+	<authentication-manager alias="authenticationManager">
+		<authentication-provider>
+			<jdbc-user-service data-source-ref="securityDataSource"
+				users-by-username-query="select userName,password, enabled from user where userName=?"
+				authorities-by-username-query="select userName, role from user where userName =?  " />
+		</authentication-provider>
 	</authentication-manager>
- 
-           
+
+
 </beans:beans>
