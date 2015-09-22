@@ -15,7 +15,12 @@ public class UserServices {
 	
 	public List<User> getAllUsers(){
 		
-		return userDAO.list();
+		return userDAO.listOfUsers();
+	}
+	
+	public User getUserById(int userId){
+		
+		return userDAO.get(userId);
 	}
 	
 	

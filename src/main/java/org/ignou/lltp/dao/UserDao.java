@@ -11,5 +11,8 @@ public interface UserDao {
 	     
 	    public User get(int userId);
 	     
-	    public List<User> list();
+	    public List<User> listOfUsers();
+	    
+	    public int countUsers();
+	    
 }

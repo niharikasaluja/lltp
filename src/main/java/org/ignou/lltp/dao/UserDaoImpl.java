@@ -32,12 +32,42 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public User get(int userId) {
-		// TODO Auto-generated method stub
-		return null;
+		 String sql = "SELECT * FROM user where id =" + userId;
+
+		 User user = jdbcTemplate.queryForObject(sql, new RowMapper<User>() {
+			 
+		        @Override
+		        public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+		        	User user = new User();
+		 
+		            user.setId(rs.getInt("id"));
+		            user.setUserName(rs.getString("userName"));
+		            user.setEmail(rs.getString("email"));	
+		            user.setRole(rs.getString("role"));	
+		            return user;
+		        }
+		 
+		    });
+		/* {
+			 
+		        @Override
+		        public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+		        	User user = new User();
+		 
+		            user.setId(rs.getInt("id"));
+		            user.setUserName(rs.getString("userName"));
+		            user.setEmail(rs.getString("email"));	
+		            user.setRole(rs.getString("role"));	
+		            return user;
+		        }
+		 
+		    });*/
+		 
+		    return user;
 	}
 
 	@Override
-	public List<User> list() {
+	public List<User> listOfUsers() {
 		// TODO Auto-generated method stub
 		 String sql = "SELECT * FROM user";
 		    List<User> listContact = jdbcTemplate.query(sql, new RowMapper<User>() {
@@ -57,6 +87,15 @@ public class UserDaoImpl implements UserDao {
 		 
 		    return listContact;
 		
+	}
+
+	@Override
+	public int countUsers() {
+		// TODO Auto-generated method stub
+		
+		String sql="Select Count(*) from user";
+		Integer count= jdbcTemplate.queryForInt(sql);
+		return count;
 	}
 
 }
