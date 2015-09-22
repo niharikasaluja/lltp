@@ -2,6 +2,7 @@ package org.ignou.lltp.dao;
 
 import java.util.List;
 
+import org.ignou.lltp.entities.Project;
 import org.ignou.lltp.entities.User;
 
 public interface UserDao {

@@ -4,13 +4,12 @@ package org.ignou.lltp;
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp.BasicDataSource;
+import org.ignou.lltp.dao.ProjectDao;
+import org.ignou.lltp.dao.ProjectDaoImpl;
 import org.ignou.lltp.dao.UserDao;
 import org.ignou.lltp.dao.UserDaoImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -59,5 +58,10 @@ public class BeanConfiguration {
 	 @Bean
 	 public UserDao getUserDAO() {
 	      return new UserDaoImpl(dataSource());
+	 }
+	 
+	 @Bean
+	 public ProjectDao getProjectDAO() {
+	      return new ProjectDaoImpl(dataSource());
 	 }
 }

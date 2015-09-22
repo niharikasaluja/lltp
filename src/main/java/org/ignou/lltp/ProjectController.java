@@ -1,7 +1,6 @@
 package org.ignou.lltp;
 
 import org.ignou.lltp.entities.Project;
-import org.ignou.lltp.repository.ProjectRepository;
 import org.ignou.lltp.service.ProjectService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,30 +16,20 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  */
 @Controller
 @EnableWebMvc
-@RequestMapping("home")
-public class HomeController {
-	
-	@Autowired
-	private ProjectRepository repository;
+@RequestMapping("projects")
+public class ProjectController {
 	
 	@Autowired
 	private ProjectService projectService;
 	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+		
 	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
-	@RequestMapping(value = "/s", method = RequestMethod.GET)
-	public @ResponseBody Iterable<Project> home() {
-		return repository.findAll();
+	@RequestMapping(value="/all", method = RequestMethod.GET)
+	public @ResponseBody Iterable<Project> getAllProjects(){		
+		Iterable<Project> projects = projectService.getAllProjects();
+		return projects;
+		
 	}
-	
-	/*@RequestMapping(value="/hello", method = RequestMethod.GET)
-	public @ResponseBody String helloWorld(){
-		
-		return projectService.helloUser("Manu");
-		
-	}*/
 	
 }
