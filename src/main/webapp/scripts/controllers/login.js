@@ -18,6 +18,7 @@ angular.module('webappApp')
 				
 	    	}).success(function (data){
 	    		console.log(data);
+	    		window.location.href = "#/"
 	    		
 	    	}).error(function(data){
 	    		console.log(data);				     	

@@ -20,6 +20,9 @@ var myApp = angular.module(
 				templateUrl : 'views/about.html',
 				controller : 'AboutCtrl',
 				controllerAs : 'about'
+			}).when('/login', {
+				templateUrl : 'views/login.html',
+				controller : 'LoginController'
 			}).otherwise({
 				redirectTo : '/'
 			});
@@ -30,14 +33,15 @@ myApp.config(['$httpProvider', function ($httpProvider) {
         return {
             'response': function (response) {
                 //Will only be called for HTTP up to 300
-                console.log(response);
+               
                 return response;
             },
             'responseError': function (rejection) {
                 if(rejection.status === 401) {
                    // location.reload();
                 	console.log("Rejected");
-                	$('#myModal').modal('show');
+                	console.log(window.location);
+                	window.location.href = "#/login"
                 }
                 return $q.reject(rejection);
             }
@@ -48,5 +52,27 @@ myApp.config(['$httpProvider', function ($httpProvider) {
 myApp.run(function() {
 
 });
+
+
+myApp.run(function($rootScope, $http, $location){
+	  $rootScope.errors = [];
+	  //$rootScope.navigateTo = "/main";
+	  
+	    
+	    $rootScope.$watch(function() { 
+	        return $location.path(); 
+	      },
+	      function(a){  
+	        console.log('url has changed: ' + a);
+	        $http.get("users/isLoggedIn").success(function(data) {
+	            console.log(data);
+	            $rootScope.loggedUser = data;
+	          }).error(function (data) {
+	        	  
+	          });
+	      }); 
+	    
+
+	});
 
 

@@ -15,12 +15,12 @@ angular.module('webappApp')
       'Karma'
     ];
     console.log("In Main");
-    $.material.init();
-    $http.get("users/all").success(function putDataInScope(data) {
+    //$.material.init();
+    /*$http.get("users/all").success(function putDataInScope(data) {
       //  $scope.data = data;
        
     }).error(function tryAgainLater() {
        
-    });
+    });*/
     
   });
