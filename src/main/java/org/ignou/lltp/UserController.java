@@ -35,10 +35,17 @@ public class UserController {
 		
 	}
 	
-	
 	@RequestMapping(value="/userById", method = RequestMethod.GET)
 	public @ResponseBody User getUserById(@RequestParam int id){		
 		User user = userService.getUserById(id);
+		return user;
+		
+	}
+	
+	@RequestMapping(value="/create", method = RequestMethod.POST)
+	public @ResponseBody User getUserById(@RequestParam User user){		
+		
+		userService.createUser(user);
 		return user;
 		
 	}

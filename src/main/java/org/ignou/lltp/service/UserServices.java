@@ -23,5 +23,9 @@ public class UserServices {
 		return userDAO.get(userId);
 	}
 	
+	public int createUser(User user){
+		
+		return userDAO.createUser(user);
+	}
 	
 }

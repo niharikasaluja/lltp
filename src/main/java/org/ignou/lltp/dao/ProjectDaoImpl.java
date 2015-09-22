@@ -7,8 +7,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.ignou.lltp.entities.Project;
-import org.ignou.lltp.entities.User;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -21,28 +20,35 @@ public class ProjectDaoImpl implements ProjectDao {
 	}
 
 	@Override
-	public void saveOrUpdate(Project project) {
-		// TODO Auto-generated method stub
+	public int saveOrUpdate(Project project) {
+		String query="insert into project values('"+project.getId()+"','"+project.getName()+"','"+project.getCreationDate()+"')";  
+		return jdbcTemplate.update(query);  
 		
 	}
 
 	@Override
-	public void delete(int ProjectId) {
-		// TODO Auto-generated method stub
+	public int delete(int projectId) {
+		String query="delete from project where id='"+ projectId +"' ";  
+	    return jdbcTemplate.update(query);
 		
 	}
 
 	@Override
-	public User get(int projectId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Project get(int projectId) {
+		
+		String sql = "SELECT * FROM Project where id =" + projectId;
+
+		Project project = jdbcTemplate.queryForObject(sql, new Object[] { projectId }, new BeanPropertyRowMapper(Project.class));
+		return project;
 	}
 
 	@Override
 	public List<Project> list() {
-		// TODO Auto-generated method stub
+		
 		 String sql = "SELECT * FROM project";
-		    List<Project> listContact = jdbcTemplate.query(sql, new RowMapper<Project>() {
+		 List<Project> projects  = jdbcTemplate.query(sql,new BeanPropertyRowMapper(Project.class));
+		 
+		   /* List<Project> listContact = jdbcTemplate.query(sql, new RowMapper<Project>() {
 		 
 		        @Override
 		        public Project mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -54,10 +60,17 @@ public class ProjectDaoImpl implements ProjectDao {
 		            return project;
 		        }
 		 
-		    });
+		    });*/
 		 
-		    return listContact;
+		    return projects;
 		
 	}
 
+	public List getAllAssociatedUsers(int projectId){
+		
+		String sql = "SELECT * FROM Project where id =" + projectId;
+		Project project = jdbcTemplate.queryForObject(sql, new Object[] { projectId }, new BeanPropertyRowMapper(Project.class));
+		return (List) project.getUsers();
+	}
+	
 }

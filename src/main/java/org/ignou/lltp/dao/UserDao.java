@@ -6,14 +6,17 @@ import org.ignou.lltp.entities.Project;
 import org.ignou.lltp.entities.User;
 
 public interface UserDao {
-	  public void saveOrUpdate(User user);
-	     
-	    public void delete(int contactId);
-	     
-	    public User get(int userId);
-	     
-	    public List<User> listOfUsers();
-	    
-	    public int countUsers();
-	    
+
+	public int saveOrUpdate(User user);
+
+	public int delete(int contactId);
+
+	public User get(int userId);
+
+	public List<User> listOfUsers();
+
+	public int countUsers();
+
+	public int createUser(User user);
+
 }

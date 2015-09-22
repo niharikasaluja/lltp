@@ -7,6 +7,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.ignou.lltp.entities.User;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -19,22 +20,26 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public void saveOrUpdate(User user) {
-		// TODO Auto-generated method stub
+	public int saveOrUpdate(User user) {
 		
+		String query="insert into employee values('"+user.getId()+"','"+user.getUserName()+"','"+user.getEmail()+"')";  
+		return jdbcTemplate.update(query);  
 	}
 
 	@Override
-	public void delete(int contactId) {
-		// TODO Auto-generated method stub
+	public int delete(int userId) {
 		
+		String query="delete from user where id='"+ userId +"' ";  
+	    return jdbcTemplate.update(query); 
 	}
 
 	@Override
 	public User get(int userId) {
 		 String sql = "SELECT * FROM user where id =" + userId;
 
-		 User user = jdbcTemplate.queryForObject(sql, new RowMapper<User>() {
+		 User user = jdbcTemplate.queryForObject(sql, new Object[] { userId }, new BeanPropertyRowMapper(User.class));
+		 
+		 /*User user = jdbcTemplate.queryForObject(sql, new RowMapper<User>() {
 			 
 		        @Override
 		        public User mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -47,7 +52,7 @@ public class UserDaoImpl implements UserDao {
 		            return user;
 		        }
 		 
-		    });
+		    });*/
 		/* {
 			 
 		        @Override
@@ -68,34 +73,43 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public List<User> listOfUsers() {
-		// TODO Auto-generated method stub
-		 String sql = "SELECT * FROM user";
-		    List<User> listContact = jdbcTemplate.query(sql, new RowMapper<User>() {
-		 
-		        @Override
-		        public User mapRow(ResultSet rs, int rowNum) throws SQLException {
-		        	User user = new User();
-		 
-		            user.setId(rs.getInt("id"));
-		            user.setUserName(rs.getString("userName"));
-		            user.setEmail(rs.getString("email"));	
-		            user.setRole(rs.getString("role"));	
-		            return user;
-		        }
-		 
-		    });
-		 
-		    return listContact;
-		
+
+		String sql = "SELECT * FROM user";
+
+		List<User> users  = jdbcTemplate.query(sql,new BeanPropertyRowMapper(User.class));
+
+		/*List<User> listContact = jdbcTemplate.query(sql, new RowMapper<User>() {
+
+			@Override
+			public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+				User user = new User();
+
+				user.setId(rs.getInt("id"));
+				user.setUserName(rs.getString("userName"));
+				user.setEmail(rs.getString("email"));	
+				user.setRole(rs.getString("role"));	
+				return user;
+			}
+
+		});*/
+
+		return users;
+
 	}
 
 	@Override
 	public int countUsers() {
-		// TODO Auto-generated method stub
 		
 		String sql="Select Count(*) from user";
 		Integer count= jdbcTemplate.queryForInt(sql);
 		return count;
 	}
-
+	
+	@Override
+	public int createUser(User user){
+		
+		String query= "insert into user values('"+user.getId()+"','"+user.getUserName()+"','"+user.getEmail()+"')";  
+		return jdbcTemplate.update(query);  
+		
+	}
 }

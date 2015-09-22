@@ -33,6 +33,10 @@ public class Project {
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<Task> tasks;
 	
+	@OneToMany(mappedBy = "project", cascade=CascadeType.REMOVE)
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private Collection<User> users;
+	
 	public long getId() {
 		return id;
 	}
@@ -111,7 +115,14 @@ public class Project {
 	public void setTasks(Collection<Task> tasks) {
 		this.tasks = tasks;
 	}
+	
+	public Collection<User> getUsers() {
+		return users;
+	}
 
+	public void setUsers(Collection<User> users) {
+		this.users = users;
+	}
 
 	@Override
 	public String toString() {
