@@ -59,6 +59,13 @@ public class UserController {
 		
 	}
 	
+	@RequestMapping(value="/count", method = RequestMethod.GET)
+	public @ResponseBody String getTotalUser(){		
+		int count = userService.countUsers();
+		return "{\"usercount\" : "+count+"}";
+		
+	}
+	
 	@RequestMapping(value="/isLoggedIn", method = RequestMethod.GET)
 	public @ResponseBody org.springframework.security.core.userdetails.User isLoggedin(){		
 			org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();

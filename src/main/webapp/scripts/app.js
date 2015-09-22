@@ -20,7 +20,11 @@ var myApp = angular.module(
 				templateUrl : 'views/about.html',
 				controller : 'AboutCtrl',
 				controllerAs : 'about'
-			}).when('/login', {
+			}).when('/projectList', {
+				templateUrl : 'views/prj-list.html',
+				controller : 'ProjCtrl'
+			})
+			.when('/login', {
 				templateUrl : 'views/login.html',
 				controller : 'LoginController'
 			}).otherwise({

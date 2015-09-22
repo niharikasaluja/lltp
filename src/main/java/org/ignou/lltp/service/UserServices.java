@@ -28,4 +28,8 @@ public class UserServices {
 		return userDAO.createUser(user);
 	}
 	
+	public int countUsers()
+	{
+		return userDAO.countUsers();
+	}
 }

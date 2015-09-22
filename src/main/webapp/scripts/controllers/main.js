@@ -8,19 +8,33 @@
  * Controller of the webappApp
  */
 angular.module('webappApp')
-  .controller('MainCtrl', function ($http, $timeout) {
+  .controller('MainCtrl', function ($http, $timeout, $scope) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
     console.log("In Main");
-    //$.material.init();
-    /*$http.get("users/all").success(function putDataInScope(data) {
-      //  $scope.data = data;
+    $.material.init();
+    $http.get("users/count").success(function putDataInScope(data) {
+        $scope.userdata = data;
        
     }).error(function tryAgainLater() {
        
-    });*/
+    });
     
   });
+
+angular.module('webappApp')
+.controller('ProjCtrl', function ($http, $timeout, $scope) {
+
+  console.log("In Proj");
+  $.material.init();
+  $http.get("projects/all").success(function putDataInScope(data) {
+      $scope.projects = data;
+     
+  }).error(function tryAgainLater() {
+     
+  });
+  
+});
