@@ -32,4 +32,12 @@ public class ProjectController {
 		
 	}
 	
+	
+	@RequestMapping(value="/count", method = RequestMethod.GET)
+	public @ResponseBody String getTotalUser(){		
+		int count = projectService.countProjects();
+		return "{\"usercount\" : "+count+"}";
+		
+	}
+	
 }

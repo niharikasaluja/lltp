@@ -24,6 +24,11 @@ var myApp = angular.module(
 				templateUrl : 'views/prj-list.html',
 				controller : 'ProjCtrl'
 			})
+			.when('/userList', {
+				templateUrl : 'views/user-list.html',
+				controller : 'UserCtrl'
+			})
+			
 			.when('/login', {
 				templateUrl : 'views/login.html',
 				controller : 'LoginController'

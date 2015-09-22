@@ -1,7 +1,5 @@
 package org.ignou.lltp.dao;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -9,7 +7,6 @@ import javax.sql.DataSource;
 import org.ignou.lltp.entities.Project;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 
 public class ProjectDaoImpl implements ProjectDao {
 	
@@ -71,6 +68,16 @@ public class ProjectDaoImpl implements ProjectDao {
 		String sql = "SELECT * FROM Project where id =" + projectId;
 		Project project = jdbcTemplate.queryForObject(sql, new Object[] { projectId }, new BeanPropertyRowMapper(Project.class));
 		return (List) project.getUsers();
+	}
+
+	@Override
+	public int countProjects() {
+		// TODO Auto-generated method stub
+			String sql="Select Count(*) from projects";
+			Integer count= jdbcTemplate.queryForInt(sql);
+			return count;
+		
+		
 	}
 	
 }

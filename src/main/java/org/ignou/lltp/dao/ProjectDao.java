@@ -11,7 +11,9 @@ public interface ProjectDao {
 	public int delete(int projectId);
 	     
 	public Project get(int projectId);
-	     
+	
+	public int countProjects();
+
 	public List<Project> list();
 	
 	public List getAllAssociatedUsers(int projectId);

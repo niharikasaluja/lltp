@@ -24,6 +24,15 @@ angular.module('webappApp')
     });
     
   });
+/*$http.get("projects/count").success(function putDataInScope(data) {
+    $scope.projectdata = data;
+   
+}).error(function tryAgainLater() {
+   
+});*/
+
+
+
 
 angular.module('webappApp')
 .controller('ProjCtrl', function ($http, $timeout, $scope) {
@@ -38,3 +47,20 @@ angular.module('webappApp')
   });
   
 });
+
+
+angular.module('webappApp')
+.controller('UserCtrl', function ($http, $timeout, $scope) {
+
+  console.log("In User");
+  $.material.init();
+  $http.get("users/all").success(function putDataInScope(data) {
+      $scope.users = data;
+     
+  }).error(function tryAgainLater() {
+     
+  });
+  
+});
+
+

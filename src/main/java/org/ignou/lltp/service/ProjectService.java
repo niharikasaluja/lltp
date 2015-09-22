@@ -16,5 +16,10 @@ public class ProjectService {
 		return projectDAO.list();
 	}
 	
-	
+	public int countProjects()
+	{
+		return projectDAO.countProjects();
+	}
 }
+	
+
