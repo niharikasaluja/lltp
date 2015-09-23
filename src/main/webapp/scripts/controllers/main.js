@@ -17,7 +17,7 @@ angular.module('webappApp')
     console.log("In Main");
     $.material.init();
     $http.get("users/count").success(function putDataInScope(data) {
-        $scope.userdata = data;
+        $scope.countdata = data;
        
     }).error(function tryAgainLater() {
        
@@ -33,10 +33,10 @@ angular.module('webappApp')
 
 
 
-
+/*Project Controller*/
 angular.module('webappApp')
-.controller('ProjCtrl', function ($http, $timeout, $scope) {
-
+.controller('ProjCtrl', function ($http, $timeout, $scope, $route, $routeParams) {
+	console.log($routeParams.projId);
   console.log("In Proj");
   $.material.init();
   $http.get("projects/all").success(function putDataInScope(data) {

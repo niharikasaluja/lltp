@@ -73,7 +73,7 @@ public class ProjectDaoImpl implements ProjectDao {
 	@Override
 	public int countProjects() {
 		// TODO Auto-generated method stub
-			String sql="Select Count(*) from projects";
+			String sql="Select Count(*) from project";
 			Integer count= jdbcTemplate.queryForInt(sql);
 			return count;
 		

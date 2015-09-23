@@ -3,6 +3,7 @@ package org.ignou.lltp;
 import java.util.Map;
 
 import org.ignou.lltp.entities.User;
+import org.ignou.lltp.service.ProjectService;
 import org.ignou.lltp.service.UserServices;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +26,9 @@ public class UserController {
 	
 	@Autowired
 	private UserServices userService;
+	
+	@Autowired
+	private ProjectService projService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 		
@@ -61,8 +65,9 @@ public class UserController {
 	
 	@RequestMapping(value="/count", method = RequestMethod.GET)
 	public @ResponseBody String getTotalUser(){		
-		int count = userService.countUsers();
-		return "{\"usercount\" : "+count+"}";
+		int usercount = userService.countUsers();
+		int projCount = projService.countProjects();
+		return "{\"usercount\" : "+usercount+", \"projCount\" : "+projCount+"}";
 		
 	}
 	

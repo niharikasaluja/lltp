@@ -20,7 +20,11 @@ var myApp = angular.module(
 				templateUrl : 'views/about.html',
 				controller : 'AboutCtrl',
 				controllerAs : 'about'
-			}).when('/projectList', {
+			}).when('/project/:projId', {
+				templateUrl : 'views/project.html',
+				controller : 'ProjCtrl'
+			})
+			.when('/projectList', {
 				templateUrl : 'views/prj-list.html',
 				controller : 'ProjCtrl'
 			})
