@@ -46,6 +46,14 @@ angular.module('webappApp')
 angular.module('webappApp')
 .controller('ProjCtrl', function ($http, $timeout, $scope, $route, $routeParams) {
 	console.log($routeParams.projId);
+	$http.get("users/userByProject?projectId="+$routeParams.projId).success(function setProjectDetails(data) {
+	      $scope.projectUsers = data;
+	      console.log("project users");
+	      console.log($scope.projectUsers);
+	  }).error(function projectFetchFail() {
+	     console.log("unable to get the details for the project: " + $routeParams.projId);
+	  });
+	
 	
 	if($routeParams.projId) {
 		$http.get("task/allTasksForProject?projectId="+$routeParams.projId).success(function setProjectDetails(data) {

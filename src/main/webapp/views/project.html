@@ -37,8 +37,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>aalo gobhi</td>
+                <tr ng-repeat="user in projectUsers">
+                    <td>{{user.userName}}</td>
                     <td><a href="javascript:void(0)" class="btn-xs btn-primary btn-fab btn-raised mdi-action-grade"></a></td>
                 </tr>
             </tbody>
