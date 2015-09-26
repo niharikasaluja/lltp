@@ -51,6 +51,15 @@ angular.module('webappApp')
      
   });
   
+  $scope.createProject = function(){
+	  $http.post("projects/create", angular.toJson($scope.proj)).success(function putDataInScope(data) {
+	    console.log("Saved");
+	     
+	  }).error(function tryAgainLater() {
+		  console.log("Error"); 
+	  });
+  }
+  
 });
 
 
