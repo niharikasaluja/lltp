@@ -59,10 +59,18 @@ public class TaskController {
 		System.out.println(task);
 		User user = (User) request.getSession().getAttribute("user");
 		task.setUser(user);
-		task.setProject(projectRepository.findOne(Long.parseLong(projId)));
+		Project project = projectRepository.findOne(Long.parseLong(projId));
+		task.setProject(project);
 		taskRepository.save(task);
-		return taskRepository.findAll();
+		return taskRepository.findAllByProject(project);
 
+	}
+	
+	@RequestMapping(value = "/updateTaskStatus", method = RequestMethod.GET)
+	public @ResponseBody String updateTaskStatus(@RequestParam String taskId,@RequestParam String status) {
+		Task task = taskRepository.findOne(Long.parseLong(taskId));
+		task.setStatus(status);
+		return "success";
 	}
 
 }

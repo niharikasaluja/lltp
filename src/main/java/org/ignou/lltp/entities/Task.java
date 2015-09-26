@@ -32,6 +32,7 @@ public class Task {
 	public String endDate;
 	public String creationDate;
 	public String lastUpdated;
+	private String status;
 	
 	public long getId() {
 		return id;
@@ -86,6 +87,12 @@ public class Task {
 	}
 	public void setTaskDescription(String taskDescription) {
 		this.taskDescription = taskDescription;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 
