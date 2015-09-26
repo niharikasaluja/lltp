@@ -48,7 +48,7 @@ angular.module('webappApp')
 	console.log($routeParams.projId);
 	
 	if($routeParams.projId) {
-		$http.get("projects/all").success(function setProjectDetails(data) {
+		$http.get("task/allTasksForProject?projectId="+$routeParams.projId).success(function setProjectDetails(data) {
 		      $scope.project = data;
 		  }).error(function projectFetchFail() {
 		     console.log("unable to get the details for the project: " + $routeParams.projId);

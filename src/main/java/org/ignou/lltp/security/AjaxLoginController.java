@@ -2,6 +2,7 @@ package org.ignou.lltp.security;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.ignou.lltp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -9,6 +10,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.RememberMeServices;
 import org.springframework.security.web.context.SecurityContextRepository;
 import org.springframework.stereotype.Controller;
@@ -30,6 +32,9 @@ SecurityContextRepository repository;
 @Autowired
 RememberMeServices rememberMeServices;
 
+@Autowired
+UserRepository usrRepository;
+
 @RequestMapping(method=RequestMethod.GET)
 public void login() {}
 
@@ -45,6 +50,8 @@ new UsernamePasswordAuthenticationToken(username, password);
 try {
 Authentication auth = authenticationManager.authenticate(token);
 SecurityContextHolder.getContext().setAuthentication(auth);
+User user = (User) auth.getPrincipal();
+request.getSession().setAttribute("user", usrRepository.findByUserName(user.getUsername()));
 repository.saveContext(SecurityContextHolder.getContext(), request, response);
 rememberMeServices.loginSuccess(request, response, auth);
 return "{\"status\": true}";
