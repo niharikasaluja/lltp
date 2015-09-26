@@ -1,8 +1,11 @@
 package org.ignou.lltp.controllers;
 
+import java.util.Collection;
 import java.util.Map;
 
+import org.ignou.lltp.entities.Project;
 import org.ignou.lltp.entities.User;
+import org.ignou.lltp.repository.ProjectRepository;
 import org.ignou.lltp.repository.UserRepository;
 import org.ignou.lltp.service.ProjectService;
 import org.ignou.lltp.service.UserServices;
@@ -35,6 +38,9 @@ public class UserController {
 	@Autowired
 	private UserRepository usrRepository;
 	
+	@Autowired
+	private ProjectRepository prjRepository;
+	
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 		
 	
@@ -49,6 +55,14 @@ public class UserController {
 	public @ResponseBody User getUserById(@RequestParam int id){		
 		User user = userService.getUserById(id);
 		return user;
+		
+	}
+	
+	@RequestMapping(value="/userByProject", method = RequestMethod.GET)
+	public @ResponseBody Collection<User> getUserByProject(@RequestParam String projectId){		
+		Project project = prjRepository.findOne(Long.parseLong(projectId));
+		
+		return project.getUsers();
 		
 	}
 	
