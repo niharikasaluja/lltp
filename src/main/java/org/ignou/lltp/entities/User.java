@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -17,7 +18,10 @@ public class User {
 	
 	@JoinColumn(name = "project_id")
     @ManyToOne()
-	private Project project;	
+	@JsonBackReference
+	private Project project;
+
+
 	
 	private String role;
 	
@@ -84,7 +88,7 @@ public class User {
 	public void setProject(Project project) {
 		this.project = project;
 	}
-	
+
 	
 
 }

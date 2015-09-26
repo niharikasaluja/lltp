@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 public class Project {
 	@Id
@@ -31,6 +33,7 @@ public class Project {
 	
 	@OneToMany(mappedBy = "project", cascade=CascadeType.REMOVE)
 	@LazyCollection(LazyCollectionOption.FALSE)
+	@JsonManagedReference
 	private Collection<Task> tasks;
 	
 	@OneToMany(mappedBy = "project", cascade=CascadeType.REMOVE)
@@ -124,8 +127,4 @@ public class Project {
 		this.users = users;
 	}
 
-	@Override
-	public String toString() {
-		return "Customer [name=" + name + ", address=" +"]";
-	}
 }

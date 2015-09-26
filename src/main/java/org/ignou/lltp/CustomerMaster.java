@@ -1,8 +1,13 @@
 package org.ignou.lltp;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.ignou.lltp.entities.Project;
+import org.ignou.lltp.entities.User;
 import org.ignou.lltp.repository.ProjectRepository;
+import org.ignou.lltp.repository.UserRepository;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 public class CustomerMaster {
@@ -14,11 +19,16 @@ public class CustomerMaster {
 	ProjectRepository repository = context
 				.getBean(ProjectRepository.class);
 	
+	UserRepository usrRepository = context
+			.getBean(UserRepository.class);
+	
 		
-		Project proj = new Project();
-		proj.setName("ABC");
-		proj.setActive(true);
-		repository.save(proj);
+		User usr = usrRepository.findOne(1L);
+		Project prj = repository.findOne(1L);
+		
+		//usr.addProject(prj);
+		usrRepository.save(usr);
+		
 		
 		((AbstractApplicationContext) context).close();
 	}

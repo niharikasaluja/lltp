@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Task {
 	@Id
@@ -15,7 +17,13 @@ public class Task {
 	
 	@JoinColumn(name = "project_id")
     @ManyToOne()
+	@JsonBackReference
 	private Project project;
+	
+	@JoinColumn(name = "user_id")
+    @ManyToOne()
+	@JsonBackReference
+	private User user;
 	
 	public String startDate;
 	public String endDate;
@@ -57,6 +65,12 @@ public class Task {
 	}
 	public void setLastUpdated(String lastUpdated) {
 		this.lastUpdated = lastUpdated;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 

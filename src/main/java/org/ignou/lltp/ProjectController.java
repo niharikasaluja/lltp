@@ -1,6 +1,7 @@
 package org.ignou.lltp;
 
 import org.ignou.lltp.entities.Project;
+import org.ignou.lltp.repository.ProjectRepository;
 import org.ignou.lltp.service.ProjectService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,13 +23,18 @@ public class ProjectController {
 	@Autowired
 	private ProjectService projectService;
 	
+	
+	@Autowired
+	private ProjectRepository projRepository;
+	
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 		
 	
 	@RequestMapping(value="/all", method = RequestMethod.GET)
 	public @ResponseBody Iterable<Project> getAllProjects(){		
+		System.out.println(projRepository.findAll());
 		Iterable<Project> projects = projectService.getAllProjects();
-		return projects;
+		return projRepository.findAll();
 		
 	}
 	

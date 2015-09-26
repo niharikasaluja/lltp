@@ -5,6 +5,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.ignou.lltp.entities.Project;
+import org.ignou.lltp.entities.Task;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -77,6 +78,16 @@ public class ProjectDaoImpl implements ProjectDao {
 			Integer count= jdbcTemplate.queryForInt(sql);
 			return count;
 		
+		
+	}
+
+	@Override
+	public List listTasks(int projectId) {
+		// TODO Auto-generated method stub
+		
+		String sql = "SELECT * FROM Project where id =" + projectId;
+		Project project = jdbcTemplate.queryForObject(sql, new Object[] { projectId }, new BeanPropertyRowMapper(Project.class));
+		return (List) project.getTasks();
 		
 	}
 	

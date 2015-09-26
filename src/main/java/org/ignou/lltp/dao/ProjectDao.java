@@ -3,6 +3,7 @@ package org.ignou.lltp.dao;
 import java.util.List;
 
 import org.ignou.lltp.entities.Project;
+import org.ignou.lltp.entities.Task;
 
 public interface ProjectDao {
 	  
@@ -15,6 +16,8 @@ public interface ProjectDao {
 	public int countProjects();
 
 	public List<Project> list();
+	
+	public List listTasks(int projectId);
 	
 	public List getAllAssociatedUsers(int projectId);
 }
