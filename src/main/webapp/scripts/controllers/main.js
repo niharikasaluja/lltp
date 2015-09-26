@@ -15,6 +15,10 @@ angular.module('webappApp')
       'Karma'
     ];
     
+    this.getFavs = function() {
+    	
+    }
+    
     this.getUrlPath = function() {
     	return $location.path();
     }
@@ -42,6 +46,23 @@ angular.module('webappApp')
 angular.module('webappApp')
 .controller('ProjCtrl', function ($http, $timeout, $scope, $route, $routeParams) {
 	console.log($routeParams.projId);
+	
+	if($routeParams.projId) {
+		$http.get("projects/all").success(function setProjectDetails(data) {
+		      $scope.project = data;
+		  }).error(function projectFetchFail() {
+		     console.log("unable to get the details for the project: " + $routeParams.projId);
+		  });
+	}
+	
+  $scope.addToFav = function() {
+	  console.log("adding to fav: " + $routeParams.projId)
+  }
+	
+  $scope.addNewProject  = function() {
+	  console.log("adding new project");
+	  console.log($scope.projTitle + " " + $scope.projDescription);
+  }
   console.log("In Proj");
   $.material.init();
   $http.get("projects/all").success(function putDataInScope(data) {
