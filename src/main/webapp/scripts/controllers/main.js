@@ -49,11 +49,27 @@ angular.module('webappApp')
 	
 	if($routeParams.projId) {
 		$http.get("task/allTasksForProject?projectId="+$routeParams.projId).success(function setProjectDetails(data) {
-		      $scope.project = data;
+		      $scope.tasks = data;
+		      console.log($scope.tasks);
 		  }).error(function projectFetchFail() {
 		     console.log("unable to get the details for the project: " + $routeParams.projId);
 		  });
 	}
+	
+  $scope.saveTask = function() {
+	  console.log("saving new task for proj: " + $routeParams.projId + $scope.taskTitle);
+	  $http.post('task/create?projId='+$routeParams.projId,$scope.projTask).
+	  then(function(response) {
+		  $('#createTaskModal').modal('toggle');
+		  $scope.tasks = response.data;
+	    // this callback will be called asynchronously
+	    // when the response is available
+	  }, function(response) {
+	    // called asynchronously if an error occurs
+	    // or server returns response with an error status.
+	  });
+	  
+  }
 	
   $scope.addToFav = function() {
 	  console.log("adding to fav: " + $routeParams.projId)

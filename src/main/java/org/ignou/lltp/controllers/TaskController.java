@@ -55,11 +55,11 @@ public class TaskController {
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public @ResponseBody Iterable<Task> create(HttpServletRequest request, @RequestBody Task task) {
+	public @ResponseBody Iterable<Task> create(HttpServletRequest request, @RequestBody Task task, @RequestParam String projId ) {
 		System.out.println(task);
 		User user = (User) request.getSession().getAttribute("user");
 		task.setUser(user);
-		task.setProject(user.getProject());
+		task.setProject(projectRepository.findOne(Long.parseLong(projId)));
 		taskRepository.save(task);
 		return taskRepository.findAll();
 

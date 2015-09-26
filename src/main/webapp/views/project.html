@@ -19,10 +19,10 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>aghaf</td>
-                    <td>aaj</td>
-                    <td>kal</td>
+                <tr ng-repeat="task in tasks">
+                    <td>{{task.taskTitle}}</td>
+                    <td>{{task.startDate | date:"dd/MM/yyyy"}}</td>
+                    <td>{{task.endDate | date:"dd/MM/yyyy"}}</td>
                 </tr>
             </tbody>
         </table>
@@ -65,34 +65,34 @@
 						<label for="taskTitle" class="col-lg-2 control-label">Title</label>
 						<div class="col-lg-10">
 							<input type="text" class="form-control" id="taskTitle"
-								placeholder="Task Title">
+								placeholder="Task Title" ng-model="projTask.taskTitle">
 						</div>
 					</kdiv>
 					<div class="form-group">
 						<label for="taskDescription" class="col-lg-2 control-label">Description</label>
 						<div class="col-lg-10">
-							<textarea class="form-control" rows="3" id="taskDescription"></textarea>
+							<textarea class="form-control" rows="3" id="taskDescription" ng-model="projTask.taskDescription"></textarea>
 						</div>
 					</div>
 					
 					<div class="form-group">
 						<label for="taskDateSatrt" class="col-lg-2 control-label">Start Date</label>
 						<div class="col-lg-10">
-							<input type="date" class="form-control" rows="3" id="taskDateStart"/>
+							<input type="date" class="form-control" rows="3" id="taskDateStart" ng-model="projTask.startDate"/>
 						</div>
 					</div>
 					
 					<div class="form-group">
 						<label for="taskDateEnd" class="col-lg-2 control-label">End Date</label>
 						<div class="col-lg-10">
-							<input type="date" class="form-control" rows="3" id="taskDateEnd"/>
+							<input type="date" class="form-control" rows="3" id="taskDateEnd" ng-model="projTask.endDate"/>
 						</div>
 					</div>
 				</form>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Save changes</button>
+				<button type="button" class="btn btn-primary" ng-click="saveTask()">Save changes</button>
 			</div>
 		</div>
 	</div>
