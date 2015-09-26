@@ -1,4 +1,4 @@
-package org.ignou.lltp;
+package org.ignou.lltp.controllers;
 
 import org.ignou.lltp.entities.Project;
 import org.ignou.lltp.repository.ProjectRepository;

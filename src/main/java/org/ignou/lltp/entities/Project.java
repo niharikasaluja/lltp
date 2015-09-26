@@ -24,7 +24,7 @@ public class Project {
 	
 	public String startDate;
 	public String endDate;
-	
+	public String description;
 	
 	public String creationDate;
 	public String lastUpdated;
@@ -33,7 +33,7 @@ public class Project {
 	
 	@OneToMany(mappedBy = "project", cascade=CascadeType.REMOVE)
 	@LazyCollection(LazyCollectionOption.FALSE)
-	@JsonManagedReference
+	@JsonManagedReference(value="proj-task")
 	private Collection<Task> tasks;
 	
 	@OneToMany(mappedBy = "project", cascade=CascadeType.REMOVE)
@@ -125,6 +125,16 @@ public class Project {
 
 	public void setUsers(Collection<User> users) {
 		this.users = users;
+	}
+
+
+	public String getDescription() {
+		return description;
+	}
+
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 }

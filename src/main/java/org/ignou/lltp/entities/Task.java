@@ -17,12 +17,12 @@ public class Task {
 	
 	@JoinColumn(name = "project_id")
     @ManyToOne()
-	@JsonBackReference
+	@JsonBackReference(value="proj-task")
 	private Project project;
 	
 	@JoinColumn(name = "user_id")
     @ManyToOne()
-	@JsonBackReference
+	@JsonBackReference(value="user-task")
 	private User user;
 	
 	
