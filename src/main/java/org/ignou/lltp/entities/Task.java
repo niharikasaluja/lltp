@@ -25,6 +25,9 @@ public class Task {
 	@JsonBackReference
 	private User user;
 	
+	
+	private String taskTitle;
+	private String taskDescription;
 	public String startDate;
 	public String endDate;
 	public String creationDate;
@@ -71,6 +74,18 @@ public class Task {
 	}
 	public void setUser(User user) {
 		this.user = user;
+	}
+	public String getTaskTitle() {
+		return taskTitle;
+	}
+	public void setTaskTitle(String taskTitle) {
+		this.taskTitle = taskTitle;
+	}
+	public String getTaskDescription() {
+		return taskDescription;
+	}
+	public void setTaskDescription(String taskDescription) {
+		this.taskDescription = taskDescription;
 	}
 	
 

@@ -74,9 +74,11 @@ myApp.run(function($rootScope, $http, $location){
 	    
 	    $rootScope.$watch(function() { 
 	        return $location.path(); 
+	        
 	      },
 	      function(a){  
 	        console.log('url has changed: ' + a);
+	        $.material.init();
 	        $http.get("users/isLoggedIn").success(function(data) {
 	            console.log(data);
 	            $rootScope.loggedUser = data;

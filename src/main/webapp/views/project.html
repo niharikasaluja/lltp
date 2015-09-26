@@ -1,1 +1,45 @@
-Project Page
+<div class="row">
+	<div class="col-md-12">
+		<a class="btn btn-warning pull-right" data-toggle="modal"
+			data-target="#createTaskModal">Add new Task</a>
+	</div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="createTaskModal" tabindex="-1"
+	role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">Add a new Task</h4>
+			</div>
+			<br/>
+			<div class="modal-body">
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label for="taskTitle" class="col-lg-2 control-label">Title</label>
+						<div class="col-lg-10">
+							<input type="text" class="form-control" id="taskTitle"
+								placeholder="Task Title">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="taskDescription" class="col-lg-2 control-label">Description</label>
+						<div class="col-lg-10">
+							<textarea class="form-control" rows="3" id="taskDescription"></textarea>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		</div>
+	</div>
+</div>

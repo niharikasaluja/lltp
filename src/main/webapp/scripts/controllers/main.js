@@ -8,13 +8,18 @@
  * Controller of the webappApp
  */
 angular.module('webappApp')
-  .controller('MainCtrl', function ($http, $timeout, $scope) {
+  .controller('MainCtrl', function ($http, $timeout, $scope, $location) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+    
+    this.getUrlPath = function() {
+    	return $location.path();
+    }
     console.log("In Main");
+    console.log($location.path());
     $.material.init();
     $http.get("users/count").success(function putDataInScope(data) {
         $scope.countdata = data;
