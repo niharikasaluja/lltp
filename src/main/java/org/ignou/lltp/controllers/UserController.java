@@ -3,6 +3,7 @@ package org.ignou.lltp.controllers;
 import java.util.Map;
 
 import org.ignou.lltp.entities.User;
+import org.ignou.lltp.repository.UserRepository;
 import org.ignou.lltp.service.ProjectService;
 import org.ignou.lltp.service.UserServices;
 import org.slf4j.Logger;
@@ -31,6 +32,9 @@ public class UserController {
 	@Autowired
 	private ProjectService projService;
 	
+	@Autowired
+	private UserRepository usrRepository;
+	
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 		
 	
@@ -49,10 +53,10 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/create", method = RequestMethod.POST)
-	public @ResponseBody User createUser(@RequestBody User user){		
+	public @ResponseBody Iterable<User> createUser(@RequestBody User user){		
 		
-		userService.createUser(user);
-		return user;
+		usrRepository.save(user);
+		return usrRepository.findAll();
 		
 	}
 	

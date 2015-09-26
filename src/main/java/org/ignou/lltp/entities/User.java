@@ -22,7 +22,7 @@ public class User {
 	private Project project;
 
 
-	
+	private String name;
 	private String role;
 	
 	private String userName;
@@ -87,6 +87,14 @@ public class User {
 
 	public void setProject(Project project) {
 		this.project = project;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	

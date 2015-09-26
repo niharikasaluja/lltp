@@ -52,15 +52,14 @@ public class ProjectController {
 	}
 	
 	@RequestMapping(value="/create", method = RequestMethod.POST)
-	public @ResponseBody String create(@RequestBody Project proj){	
+	public @ResponseBody Iterable<Project> create(@RequestBody Project proj){	
 		Date today = new Date();
 		proj.setCreationDate(format.format(today));
 		proj.setStartDate(format.format(today));
 		proj.setActive(true);
 		proj.setLastUpdated(format.format(today));
 		projRepository.save(proj);
-		int count = projectService.countProjects();
-		return "{\"usercount\" : "+count+"}";
+		return projRepository.findAll();
 		
 	}
 	

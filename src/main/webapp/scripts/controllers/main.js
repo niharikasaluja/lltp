@@ -54,7 +54,9 @@ angular.module('webappApp')
   $scope.createProject = function(){
 	  $http.post("projects/create", angular.toJson($scope.proj)).success(function putDataInScope(data) {
 	    console.log("Saved");
-	     
+	    $scope.proj= {};
+	    $('#createProjectModal').modal('toggle');
+	    $scope.projects = data;
 	  }).error(function tryAgainLater() {
 		  console.log("Error"); 
 	  });
@@ -74,6 +76,17 @@ angular.module('webappApp')
   }).error(function tryAgainLater() {
      
   });
+  
+  $scope.createUser = function(){
+	  $http.post("users/create", angular.toJson($scope.user)).success(function putDataInScope(data) {
+		    console.log("Saved");
+		    $scope.user= {};
+		    $('#createUserModal').modal('toggle');
+		    $scope.users = data;
+		  }).error(function tryAgainLater() {
+			  console.log("Error"); 
+		  });
+  }
   
 });
 
