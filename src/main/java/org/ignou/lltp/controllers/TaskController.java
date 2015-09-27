@@ -76,10 +76,6 @@ public class TaskController {
 	@RequestMapping(value = "/getTaskDetails", method = RequestMethod.GET)
 	public @ResponseBody Task getTaskDetails(@RequestParam String taskId) {
 		Task task = taskRepository.findOne(Long.parseLong(taskId));
-		User usr = task.getUser();
-		Project proj = task.getProject();
-		task.setProject(proj);
-		task.setUser(usr);
 		return task;
 	}
 

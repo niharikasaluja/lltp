@@ -20,15 +20,10 @@ angular.module('webappApp')
   }).error(function tryAgainLater() {
      
   });
-  $scope.comment = {};
-  $scope.comment.commentDate = new Date();
-  $scope.postComment = function(){
-	  $http.post('comment/addComment?taskId='+$routeParams.taskId,$scope.comment).
-	  then(function(response) {
-		 
-	  }, function(response) {
-	  });
-
+  
+  $scope.addComment = function(){
+	  
   }
+
   
 });
