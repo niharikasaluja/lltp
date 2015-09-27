@@ -72,5 +72,11 @@ public class TaskController {
 		task.setStatus(status);
 		return "success";
 	}
+	
+	@RequestMapping(value = "/getTaskDetails", method = RequestMethod.GET)
+	public @ResponseBody Task getTaskDetails(@RequestParam String taskId) {
+		Task task = taskRepository.findOne(Long.parseLong(taskId));
+		return task;
+	}
 
 }

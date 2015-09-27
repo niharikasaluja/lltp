@@ -3,7 +3,7 @@
 		<a class="btn btn-warning pull-right" data-toggle="modal"
 			data-target="#createTaskModal">Add new Task</a>
 			
-		<a class="btn btn-warning pull-right" ng-click="addToFav()">Add to Favourites</a>	
+		<a class="btn btn-warning pull-right" ng-click="addToFav()">Add User To Project</a>	
 	</div>
 </div>
 
@@ -20,7 +20,7 @@
             </thead>
             <tbody>
                 <tr ng-repeat="task in tasks">
-                    <td>{{task.taskTitle}}</td>
+                    <td><a ng-href="#/task/{{task.id}}">{{task.taskTitle}}</a></td>
                     <td>{{task.startDate | date:"dd/MM/yyyy"}}</td>
                     <td>{{task.endDate | date:"dd/MM/yyyy"}}</td>
                 </tr>
@@ -39,11 +39,26 @@
             <tbody>
                 <tr ng-repeat="user in projectUsers">
                     <td>{{user.userName}}</td>
-                    <td><a href="javascript:void(0)" class="btn-xs btn-primary btn-fab btn-raised mdi-action-grade"></a></td>
+                    <td></td>
                 </tr>
+                
             </tbody>
+            
         </table>
+        <div>
+        <angucomplete-alt id="ex1"
+              placeholder="Add User"
+              pause="100"
+              selected-object="selectedUser"
+              local-data="allusers"
+              search-fields="name"
+              title-field="name"
+              minlength="1"
+              input-class="form-control form-control-small"/>
+            </div>
+            <a href="javascript:void(0)" ng-click="addUserToProject()" class="btn-xs btn-primary btn-fab btn-raised mdi-content-add-circle-outline pull-right"></a>  
     </div>
+   
 </div>
 
 <!-- Modal -->

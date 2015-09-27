@@ -62,6 +62,30 @@ angular.module('webappApp')
 		  }).error(function projectFetchFail() {
 		     console.log("unable to get the details for the project: " + $routeParams.projId);
 		  });
+		
+		$http.get("users/all").success(function putDataInScope(data) {
+		      $scope.allusers = data;
+		     
+		  }).error(function tryAgainLater() {
+		     
+		  });
+	}
+	
+	$scope.addUserToProject = function(){
+		console.log($routeParams.projId);
+		console.log($scope.selectedUser.originalObject);
+		$http.post('users/assignUserToProject?projId='+$routeParams.projId,$scope.selectedUser.originalObject).
+		  then(function(response) {
+			  $("#ex1_value").val('');
+			  $scope.searchStr = '';
+			  $scope.projectUsers = response.data;
+		    // this callback will be called asynchronously
+		    // when the response is available
+		  }, function(response) {
+		    // called asynchronously if an error occurs
+		    // or server returns response with an error status.
+		  });
+		
 	}
 	
   $scope.saveTask = function() {
@@ -79,15 +103,8 @@ angular.module('webappApp')
 	  
   }
 	
-  $scope.addToFav = function() {
-	  console.log("adding to fav: " + $routeParams.projId)
-  }
 	
-  $scope.addNewProject  = function() {
-	  console.log("adding new project");
-	  console.log($scope.projTitle + " " + $scope.projDescription);
-  }
-  console.log("In Proj");
+ 
   $.material.init();
   $http.get("projects/all").success(function putDataInScope(data) {
       $scope.projects = data;

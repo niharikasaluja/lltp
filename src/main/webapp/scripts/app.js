@@ -10,7 +10,7 @@
 var myApp = angular.module(
 		'webappApp',
 		[ 'ngAnimate', 'ngAria', 'ngCookies', 'ngMessages', 'ngResource',
-				'ngRoute', 'ngSanitize', 'ngTouch' ]).config(
+				'ngRoute', 'ngSanitize', 'ngTouch','angucomplete-alt' ]).config(
 		function($routeProvider) {
 			$routeProvider.when('/', {
 				templateUrl : 'views/main.html',
@@ -27,6 +27,10 @@ var myApp = angular.module(
 			.when('/projectList', {
 				templateUrl : 'views/prj-list.html',
 				controller : 'ProjCtrl'
+			})
+			.when('/task/:taskId', {
+				templateUrl : 'views/task.html',
+				controller : 'TaskCtrl'
 			})
 			.when('/userList', {
 				templateUrl : 'views/user-list.html',

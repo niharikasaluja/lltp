@@ -66,12 +66,12 @@ public class UserController {
 		
 	}
 	
-	@RequestMapping(value="/assignUserToProject", method = RequestMethod.GET)
-	public @ResponseBody Collection<User> assignUserToProject(@RequestParam String projectId, @RequestParam String userId){		
-		Project project = prjRepository.findOne(Long.parseLong(projectId));
-		User user = usrRepository.findOne(Long.parseLong(userId));
+	@RequestMapping(value="/assignUserToProject", method = RequestMethod.POST)
+	public @ResponseBody Collection<User> assignUserToProject(@RequestParam String projId, @RequestBody User user){		
+		Project project = prjRepository.findOne(Long.parseLong(projId));
 		user.setProject(project);
 		usrRepository.save(user);
+		project = prjRepository.findOne(Long.parseLong(projId));
 		return project.getUsers();
 		
 	}
