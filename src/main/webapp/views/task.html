@@ -1,1 +1,89 @@
-TASK ID
+<!-- Start your code here -->
+<div class="panel panel-default event">
+  <div class="panel-body">
+    <div class="rsvp col-xs-2 col-sm-2">
+      <i>{{startDate}}</i>
+      <i>{{startMonth}}</i>
+      <div class="hidden-xs">
+        <span class="fa fa-thumbs-up fa-2x"></span>
+        <span class="fa fa-thumbs-down fa-2x"></span>
+      </div>
+    </div>
+    <div class="info col-xs-8 col-sm-7">
+      {{task.taskTitle}}
+      <div class="hidden-xs">
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a  aria-controls="location" role="tab" data-toggle="tab">Description</a></li>
+           
+          </ul>
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="location">{{task.taskDescription}}</div>
+          </div>
+        </div>
+    </div>
+    <div class="author col-xs-2 col-sm-3">
+   
+        <div class="profile hidden-xs">
+            <article>Last Updated: {{lastUpdated}}</article>
+            <div class="links hidden-sm">
+              <i class="fa <fa-gi></fa-gi>thub-square fa-2x col-xs-3"></i>
+              <i class="fa fa-google-plus-square fa-2x col-xs-3"></i>
+              <i class="fa fa-facebook-square fa-2x col-xs-3"></i>
+              <i class="fa fa-linkedin-square  fa-2x col-xs-3"></i>
+            </div>
+        </div>
+        
+    </div>
+  </div>
+</div>
+
+<div class="well well-lg">
+<!-- <div class="row">
+  <div class="col-md-5">
+	<h2>{{task.taskTitle}}</h2>
+	<h3>Started on: </h3> {{task.startDate}}
+	<h3>Completion Date: </h3> {{task.endDate}}
+	<h3>Description</h3> {{task.taskDescription}}
+	<h3>Last updated on: </h3> {{task.lastUpdated}}
+	<h3>Status</h3> {{task.status}}
+  </div>
+  <div class="col-md-5">
+    <a class="btn btn-warning pull-right">Assign to User</a>
+    
+  </div>
+</div> -->
+
+<form class="form-horizontal">
+    <fieldset>
+        <legend><h1>{{task.taskTitle}}</h1></legend>
+        <div class="form-group">
+            <label for="inputEmail" class="col-lg-2 lead">Started on:</label>
+            <div class="col-lg-10">
+                <div class="lead">{{task.startDate}}</div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="inputEmail" class="col-lg-2 lead">End on:</label>
+            <div class="col-lg-10">
+                <div class="lead">{{task.endDate}}</div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="inputEmail" class="col-lg-2 lead">Status:</label>
+            <div class="col-lg-10">
+                <div class="lead">{{task.status}}</div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="inputEmail" class="col-lg-2 lead">Description:</label>
+            <div class="col-lg-10">
+                <div class="lead">{{task.description}}</div>
+            </div>
+        </div>
+        </fieldset>
+        </form>
+</div>
