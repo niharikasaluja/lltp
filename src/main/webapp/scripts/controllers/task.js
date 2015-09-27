@@ -20,16 +20,15 @@ angular.module('webappApp')
   }).error(function tryAgainLater() {
      
   });
-  
-//  $scope.createUser = function(){
-//	  $http.post("users/create", angular.toJson($scope.user)).success(function putDataInScope(data) {
-//		    console.log("Saved");
-//		    $scope.user= {};
-//		    $('#createUserModal').modal('toggle');
-//		    $scope.users = data;
-//		  }).error(function tryAgainLater() {
-//			  console.log("Error"); 
-//		  });
-//  }
+  $scope.comment = {};
+  $scope.comment.commentDate = new Date();
+  $scope.postComment = function(){
+	  $http.post('comment/addComment?taskId='+$routeParams.taskId,$scope.comment).
+	  then(function(response) {
+		 
+	  }, function(response) {
+	  });
+
+  }
   
 });

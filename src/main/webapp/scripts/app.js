@@ -23,6 +23,9 @@ var myApp = angular.module(
 			}).when('/project/:projId', {
 				templateUrl : 'views/project.html',
 				controller : 'ProjCtrl'
+			}).when('/project/dashboard/:projId', {
+				templateUrl : 'views/projectdashboard.html',
+				controller : 'ProjCtrl'
 			})
 			.when('/projectList', {
 				templateUrl : 'views/prj-list.html',
@@ -83,6 +86,7 @@ myApp.run(function($rootScope, $http, $location){
 	      function(a){  
 	        console.log('url has changed: ' + a);
 	        $.material.init();
+	        $('#paginator').datepaginator();
 	        $http.get("users/isLoggedIn").success(function(data) {
 	            console.log(data);
 	            $rootScope.loggedUser = data;

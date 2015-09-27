@@ -46,6 +46,7 @@ angular.module('webappApp')
 angular.module('webappApp')
 .controller('ProjCtrl', function ($http, $timeout, $scope, $route, $routeParams) {
 	console.log($routeParams.projId);
+	 $('#paginator').datepaginator();
 	$http.get("users/userByProject?projectId="+$routeParams.projId).success(function setProjectDetails(data) {
 	      $scope.projectUsers = data;
 	      console.log("project users");
@@ -56,6 +57,7 @@ angular.module('webappApp')
 	
 	
 	if($routeParams.projId) {
+		$scope.projId = $routeParams.projId;
 		$http.get("task/allTasksForProject?projectId="+$routeParams.projId).success(function setProjectDetails(data) {
 		      $scope.tasks = data;
 		      console.log($scope.tasks);
@@ -73,6 +75,7 @@ angular.module('webappApp')
 	
 	$scope.addUserToProject = function(){
 		console.log($routeParams.projId);
+		
 		console.log($scope.selectedUser.originalObject);
 		$http.post('users/assignUserToProject?projId='+$routeParams.projId,$scope.selectedUser.originalObject).
 		  then(function(response) {
