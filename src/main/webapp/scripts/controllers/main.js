@@ -73,6 +73,29 @@ angular.module('webappApp')
 		  });
 	}
 	
+	if($routeParams.projDashId){
+		$http.get("users/userByProject?projectId="+$routeParams.projDashId).success(function setProjectDetails(data) {
+		      $scope.projectUsers = data;
+		      console.log("project users");
+		      console.log($scope.projectUsers);
+		      $scope.userTaskData = [];
+				for (var user in $scope.projectUsers) {
+					$http.get("task/allTasksForUser?userId="+$scope.projectUsers[user].id).success(function setProjectDetails(data) {
+					      var userData = {};
+					      userData.username = $scope.projectUsers[user].userName;
+					      userData.tasks = data;
+					      $scope.userTaskData.push(userData);
+					      console.log($scope.tasks);
+					  }).error(function projectFetchFail() {
+					     console.log("unable to get the details for the user: " + $routeParams.projId);
+					  });
+					}
+		  }).error(function projectFetchFail() {
+		     console.log("unable to get the details for the project: " + $routeParams.projId);
+		  });
+		
+		}
+	
 	$scope.addUserToProject = function(){
 		console.log($routeParams.projId);
 		console.log($scope.selectedUser.originalObject);

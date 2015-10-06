@@ -16,6 +16,13 @@ angular.module('webappApp')
   }).error(function() {
 	  
   });
+  
+  $http.get('task/getTaskUser?taskId=' + $routeParams.taskId).success(function(data) {
+	  console.log(data);
+	  $scope.taskUser = data;
+  }).error(function() {
+	  
+  });
      
   }).error(function tryAgainLater() {
      

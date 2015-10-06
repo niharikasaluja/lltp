@@ -10,7 +10,7 @@
 			<div class="panel-heading">
 				<h3 class="panel-title">{{user.userName}}</h3>
 			</div>
-			<div class="panel-body">{{user.id}}</div>
+			<div class="panel-body">{{user.role}}</div>
 		</div>
 	</div>
 </div>
@@ -58,11 +58,9 @@
 						<label for="role" class="col-lg-2 control-label">User Role</label>
 						<div class="col-lg-10">
 							<select class="form-control" id="select" ng-model="user.role">
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-								<option>5</option>
+								<option>SUPER ADMIN</option>
+								<option>PROJECT ADMIN</option>
+								<option>TEAM MEMBER</option>
 							</select>
 						</div>
 					</div>

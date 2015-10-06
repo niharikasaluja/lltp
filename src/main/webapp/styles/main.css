@@ -422,7 +422,6 @@ div.user-menu div.user-menu-content:not(.active){
 
 .user-details {
     background: #eee;
-    min-height: 333px;
 }
 
 .user-image {
@@ -438,7 +437,7 @@ div.user-menu div.user-menu-content:not(.active){
 
 .overview h4 {
     font-weight: bold!important;
-    font-size: 40px;
+    font-size: 20px;
     margin-top: 0;
 }
 

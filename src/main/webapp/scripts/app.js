@@ -23,7 +23,7 @@ var myApp = angular.module(
 			}).when('/project/:projId', {
 				templateUrl : 'views/project.html',
 				controller : 'ProjCtrl'
-			}).when('/project/dashboard/:projId', {
+			}).when('/project/dashboard/:projDashId', {
 				templateUrl : 'views/projectdashboard.html',
 				controller : 'ProjCtrl'
 			})

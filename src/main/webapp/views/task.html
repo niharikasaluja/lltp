@@ -15,20 +15,24 @@
 					<a href="javascript:void(0)" ng-click="addUserToProject()"
 						class="btn-xs btn-primary btn-fab btn-raised mdi-content-create pull-right"></a>
 				</div>
+				<div class="col-md-6 no-pad">
+					<a href="javascript:void(0)" ng-click="addUserToProject()"
+						class="btn-xs btn-primary btn-fab btn-raised mdi-action-verified-user pull-right" style="margin-top: 66px;"></a>
+				</div>
 			</div>
 			<div class="row overview">
 				<div class="col-md-4 user-pad text-center">
-					<h3>Start Date</h3>
-					<h3>{{task.startDate | date:"dd/MM/yyyy"}}</h3>
+					<h4>Start Date</h4>
+					<h4>{{task.startDate | date:"dd/MM/yyyy"}}</h4>
 				</div>
 				<div class="col-md-4 user-pad text-center">
-					<h3>ASSIGNED TO</h3>
-					<h4>{{task.user.userName}}</h4>
+					<h4>ASSIGNED TO</h4>
+					<h4>{{taskUser.userName}}</h4>
 
 				</div>
 				<div class="col-md-4 user-pad text-center">
-					<h3>End Date</h3>
-					<h3>{{task.endDate | date:"dd/MM/yyyy"}}</h3>
+					<h4>End Date</h4>
+					<h4>{{task.endDate | date:"dd/MM/yyyy"}}</h4>
 				</div>
 			</div>
 
@@ -58,10 +62,10 @@
 		<div class="col-sm-5">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<strong>myusername</strong> <span class="text-muted">commented
+					<strong>lltpuser</strong> <span class="text-muted">commented
 						5 days ago</span>
 				</div>
-				<div class="panel-body">Panel content</div>
+				<div class="panel-body">Need to add Bootstrap Framework</div>
 				<!-- /panel-body -->
 			</div>
 			<!-- /panel panel-default -->
@@ -83,10 +87,10 @@
 		<div class="col-sm-5">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<strong>myusername</strong> <span class="text-muted">commented
-						5 days ago</span>
+					<strong>lltpuser2</strong> <span class="text-muted">commented
+						2 days ago</span>
 				</div>
-				<div class="panel-body">Panel content</div>
+				<div class="panel-body">I have already added. Please take fresh checkout</div>
 				<!-- /panel-body -->
 			</div>
 			<!-- /panel panel-default -->

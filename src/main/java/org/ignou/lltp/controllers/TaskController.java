@@ -10,6 +10,7 @@ import org.ignou.lltp.entities.Task;
 import org.ignou.lltp.entities.User;
 import org.ignou.lltp.repository.ProjectRepository;
 import org.ignou.lltp.repository.TaskRepository;
+import org.ignou.lltp.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,9 @@ public class TaskController {
 	
 	@Autowired
 	ProjectRepository projectRepository;
+	
+	@Autowired
+	UserRepository userRepository;
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(UserController.class);
@@ -78,5 +82,20 @@ public class TaskController {
 		Task task = taskRepository.findOne(Long.parseLong(taskId));
 		return task;
 	}
+	
+	@RequestMapping(value = "/getTaskUser", method = RequestMethod.GET)
+	public @ResponseBody User getTaskUser(@RequestParam String taskId) {
+		Task task = taskRepository.findOne(Long.parseLong(taskId));
+		return task.getUser();
+	}
+	
+	@RequestMapping(value = "/allTasksForUser", method = RequestMethod.GET)
+	public @ResponseBody Iterable<Task> allTasksForUser(@RequestParam String userId) {
+		
+		User user = userRepository.findOne(Long.parseLong(userId));
+		Iterable<Task> tasks = taskRepository.findAllByUser(user);
+		return tasks;
+	}
+	
 
 }
