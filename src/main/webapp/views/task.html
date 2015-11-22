@@ -26,7 +26,7 @@
 					<h4>{{task.startDate | date:"dd/MM/yyyy"}}</h4>
 				</div>
 				<div class="col-md-4 user-pad text-center">
-					<h4>ASSIGNED TO</h4>
+					<h4>Assigned To</h4>
 					<h4>{{taskUser.userName}}</h4>
 
 				</div>
@@ -49,7 +49,7 @@
 		<!-- /col-sm-12 -->
 	</div>
 	<!-- /row -->
-	<div class="row">
+	<div class="row" ng-repeat="comment in taskComments">
 		<div class="col-sm-1">
 			<div class="thumbnail">
 				<img class="img-responsive user-photo"
@@ -62,35 +62,10 @@
 		<div class="col-sm-5">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<strong>lltpuser</strong> <span class="text-muted">commented
+					<strong>{{comment.user.name}}</strong> <span class="text-muted">commented
 						5 days ago</span>
 				</div>
-				<div class="panel-body">Need to add Bootstrap Framework</div>
-				<!-- /panel-body -->
-			</div>
-			<!-- /panel panel-default -->
-		</div>
-		<!-- /col-sm-5 -->
-	</div>
-	<!-- /row -->
-		<!-- /row -->
-	<div class="row">
-		<div class="col-sm-1">
-			<div class="thumbnail">
-				<img class="img-responsive user-photo"
-					src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
-			</div>
-			<!-- /thumbnail -->
-		</div>
-		<!-- /col-sm-1 -->
-
-		<div class="col-sm-5">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<strong>lltpuser2</strong> <span class="text-muted">commented
-						2 days ago</span>
-				</div>
-				<div class="panel-body">I have already added. Please take fresh checkout</div>
+				<div class="panel-body">{{comment.commentText}}</div>
 				<!-- /panel-body -->
 			</div>
 			<!-- /panel panel-default -->
@@ -99,11 +74,12 @@
 	</div>
 	<!-- /row -->
 	
+	
 	<div class="panel-google-plus-comment">
                     <img class="img-circle" src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s46" alt="User Image">
                     <div class="panel-google-plus-textarea">
                         <textarea rows="4" ng-model="comment.commentText"></textarea>
-                        <button type="submit" class="[ btn btn-success ]" ng-click="postComment();">Post comment</button>
+                        <button type="submit" class="[ btn btn-success ]" ng-click="addComment();">Post comment</button>
                     </div>
                     <div class="clearfix"></div>
                 </div>

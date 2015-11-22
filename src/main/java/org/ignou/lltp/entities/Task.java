@@ -1,13 +1,21 @@
 package org.ignou.lltp.entities;
 
+import java.util.Collection;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Task {
@@ -19,6 +27,11 @@ public class Task {
     @ManyToOne()
 	@JsonBackReference(value="proj-task")
 	private Project project;
+	
+	@OneToMany(mappedBy = "task", cascade=CascadeType.REMOVE)
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@JsonManagedReference(value="comment-task")
+	private Collection<Comment> comments;
 	
 	@JoinColumn(name = "user_id")
     @ManyToOne()
@@ -93,6 +106,12 @@ public class Task {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	public Collection<Comment> getComments() {
+		return comments;
+	}
+	public void setComments(Collection<Comment> comments) {
+		this.comments = comments;
 	}
 	
 

@@ -23,13 +23,31 @@ angular.module('webappApp')
   }).error(function() {
 	  
   });
-     
+  
+  $http.get('task/getTaskComments?taskId=' + $routeParams.taskId).success(function(data) {
+	  console.log(data);
+	  $scope.taskComments = data;
+  }).error(function() {
+	  
+  });
+  
   }).error(function tryAgainLater() {
      
   });
   
   $scope.addComment = function(){
-	  
+	  console.log("Comment added");
+	  $http.post('comment/addComment?taskId='+$routeParams.taskId,$scope.comment).
+	  then(function(response) {
+		  console.log(response);
+		  $scope.taskComments = response.data;
+		  // this callback will be called asynchronously
+	    // when the response is available
+	  }, function(response) {
+		  console.log(response);
+	    // called asynchronously if an error occurs
+	    // or server returns response with an error status.
+	  });
   }
 
   

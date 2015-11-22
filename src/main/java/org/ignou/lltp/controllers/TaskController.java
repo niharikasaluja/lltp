@@ -1,10 +1,12 @@
 package org.ignou.lltp.controllers;
 
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.ignou.lltp.entities.Comment;
 import org.ignou.lltp.entities.Project;
 import org.ignou.lltp.entities.Task;
 import org.ignou.lltp.entities.User;
@@ -81,6 +83,12 @@ public class TaskController {
 	public @ResponseBody Task getTaskDetails(@RequestParam String taskId) {
 		Task task = taskRepository.findOne(Long.parseLong(taskId));
 		return task;
+	}
+	
+	@RequestMapping(value = "/getTaskComments", method = RequestMethod.GET)
+	public @ResponseBody Collection<Comment> getTaskComments(@RequestParam String taskId) {
+		Task task = taskRepository.findOne(Long.parseLong(taskId));
+		return task.getComments();
 	}
 	
 	@RequestMapping(value = "/getTaskUser", method = RequestMethod.GET)

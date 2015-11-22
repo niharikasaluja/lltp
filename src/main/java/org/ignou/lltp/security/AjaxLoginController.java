@@ -45,9 +45,14 @@ public String performLogin(
 @RequestParam("j_password") String password,
 HttpServletRequest request, HttpServletResponse response) 
 {
+	response.setHeader("Access-Control-Allow-Origin", "*");
+	response.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");
+	response.setHeader("Access-Control-Max-Age", "3600");
+	response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");	
 UsernamePasswordAuthenticationToken token = 
 new UsernamePasswordAuthenticationToken(username, password);
 try {
+	
 Authentication auth = authenticationManager.authenticate(token);
 SecurityContextHolder.getContext().setAuthentication(auth);
 User user = (User) auth.getPrincipal();

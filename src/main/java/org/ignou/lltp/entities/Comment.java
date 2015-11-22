@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Comment {
 	@Id
@@ -20,6 +22,7 @@ public class Comment {
 	
 	@JoinColumn(name = "task_id")
     @ManyToOne()
+	@JsonBackReference(value="comment-task")
 	private Task task;
 	
 	
